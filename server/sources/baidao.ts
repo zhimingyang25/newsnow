@@ -1,7 +1,7 @@
 import type { NewsItem } from "@shared/types"
 
 export default defineSource(async () => {
-  const html: string = await myFetch("https://chinese.aljazeera.net/news/")
+  const html: string = await myFetch("https://chinese.aljazeera.net/news")
   const regex = /var\s+allData\s*=\s*(\{[\s\S]*?\});/
   const match = regex.exec(html)
   const news: NewsItem[] = []
