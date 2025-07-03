@@ -249,19 +249,19 @@ export const originSources = {
     home: "https://solidot.org",
     interval: Time.Slow,
   },
-  "hackernews": {
-    name: "Hacker News",
+  "baidao": {
+    name: "半岛新闻",
     color: "orange",
     column: "tech",
     type: "hottest",
-    home: "https://news.ycombinator.com/",
+    home: "https://chinese.aljazeera.net/news/",
   },
-  "producthunt": {
-    name: "Product Hunt",
+  "zhaoxianrubao": {
+    name: "朝鮮日報",
     color: "red",
     column: "tech",
     type: "hottest",
-    home: "https://www.producthunt.com/",
+    home: "https://cnnews.chosun.com",
   },
   "github": {
     name: "Github",
