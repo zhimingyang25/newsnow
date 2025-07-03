@@ -1,28 +1,27 @@
-import * as cheerio from "cheerio"
 import type { NewsItem } from "@shared/types"
 
 export default defineSource(async () => {
-  const baseURL = "https://www.chinatimes.com/world/?chdtv"
-  const html: any = await myFetch(baseURL)
-  const $ = cheerio.load(html)
-  const $main = $("[data-test=homepage-section-0] [data-test^=post-item]")
+  const html: string = await myFetch("https://www.chinatimes.com/world/?chdtv")
+  const regex = /var\s+allData\s*=\s*(\{[\s\S]*?\});/
+  const match = regex.exec(html)
   const news: NewsItem[] = []
-  $main.each((_, el) => {
-    const a = $(el).find("a").first()
-    const url = a.attr("href")
-    const title = $(el).find("a[data-test^=post-name]").text().replace(/^\d+\.\s*/, "")
-    const id = $(el).attr("data-test")?.replace("post-item-", "")
-    const vote = $(el).find("[data-test=vote-button]").text()
-    if (url && id && title) {
+  if (match) {
+    const realData = JSON.parse(match[1])
+    const rawNews = realData.hotNews1 as {
+      url: string
+      title: string
+      newsTime: string
+    }[]
+    rawNews.forEach((hotNews) => {
       news.push({
-        url: `${baseURL}${url}`,
-        title,
-        id,
+        id: hotNews.url,
+        url: hotNews.url,
+        title: hotNews.title,
         extra: {
-          info: `△︎ ${vote}`,
+          date: hotNews.newsTime,
         },
       })
-    }
-  })
+    })
+  }
   return news
-})
+})https://www.chinatimes.com/world/?chdtv
