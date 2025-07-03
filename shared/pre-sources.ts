@@ -261,7 +261,7 @@ export const originSources = {
     color: "red",
     column: "tech",
     type: "hottest",
-    home: "https://cnnews.chosun.com",
+    home: "https://www.chinatimes.com/world/?chdtv",
   },
   "github": {
     name: "Github",
