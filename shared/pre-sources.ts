@@ -254,7 +254,7 @@ export const originSources = {
     color: "orange",
     column: "tech",
     type: "hottest",
-    home: "https://chinese.aljazeera.net/news/",
+    home: "https://www.chinatimes.com/world/?chdtv",
   },
   "zhaoxianrubao": {
     name: "朝鮮日報",
